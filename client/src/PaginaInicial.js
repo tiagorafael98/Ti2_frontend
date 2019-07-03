@@ -24,6 +24,7 @@ class PaginaInicial extends Component {
         this.handleChange = this.handleChange .bind(this);
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
+        this.handleCommentSubmission = this.handleCommentSubmission.bind(this);
     }
     async componentDidMount() {
         let response = await axios.get('https://ipt-ti2-iptgram.azurewebsites.net/api/posts');
@@ -39,6 +40,7 @@ class PaginaInicial extends Component {
         let response = await axios.get('https://ipt-ti2-iptgram.azurewebsites.net/api/posts/' + id);
 
         let obj = {
+            id: id,
             image: "https://ipt-ti2-iptgram.azurewebsites.net/api/posts/" + id + "/image",
             user: response.data.user.name,
             date: response.data.postedAt,
@@ -119,6 +121,24 @@ class PaginaInicial extends Component {
         }
     }
 
+    async handleCommentSubmission(comment, idPost){
+        console.log(comment);
+        console.log(idPost);
+        let obj= {
+            // ID do post onde publicar o comentario
+            "postId": idPost,
+            "text": comment
+        }
+
+        let response = await axios.post("https://ipt-ti2-iptgram.azurewebsites.net/api/comments", obj, {
+            withCredentials: true,
+            crossdomain: true,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+    }
     render() {
         return (
             <div className="PaginaInicial">
@@ -157,12 +177,14 @@ class PaginaInicial extends Component {
                     // com estas 2 condições, só renderiza se ambas forem verdadeiras
                     this.state.isShowingImagePopUp &&
                     <ImagePopUp image={this.state.showCaseImage.image}
+                        idPost={this.state.showCaseImage.id}
                         user={this.state.showCaseImage.user}
                         date={this.state.showCaseImage.date}
                         caption={this.state.showCaseImage.caption}
                         likes={this.state.showCaseImage.likes}
                         comments={this.state.showCaseImage.comments}
                         closePopUp={this.closePopUp}
+                        handleCommentSubmission={this.handleCommentSubmission}
                     />
                 }
             </div>
