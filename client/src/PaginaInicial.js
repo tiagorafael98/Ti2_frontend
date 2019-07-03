@@ -27,6 +27,10 @@ class PaginaInicial extends Component {
         this.handleCommentSubmission = this.handleCommentSubmission.bind(this);
     }
     async componentDidMount() {
+        this.fetchPosts();
+    }
+
+    async fetchPosts(){
         let response = await axios.get('https://ipt-ti2-iptgram.azurewebsites.net/api/posts');
 
         let postsArray = response.data;
@@ -139,6 +143,17 @@ class PaginaInicial extends Component {
         });
 
     }
+
+    async handleLike(id){
+        let response = await axios.post("https://ipt-ti2-iptgram.azurewebsites.net/api/posts/" + id + "/like", null, {
+            withCredentials: true,
+            crossdomain: true,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        this.fetchPosts(); //atualiza a pagina com o novo like
+    }
     render() {
         return (
             <div className="PaginaInicial">
@@ -166,7 +181,8 @@ class PaginaInicial extends Component {
                             <Image id={p.id} showPopUp={this.showImagePopUp} />, //estamos a dar à iamgem a propriedade showPopUp q vai dar a funçao showImagePopUp
                             <h2>{p.user.name}</h2>,
                             <h3>{p.postedAt.substring(0, p.postedAt.indexOf("T"))}</h3>,
-                            <h3>{p.likes}</h3>,
+                            <button onClick={() => this.handleLike(p.id)}>like</button>,
+                            <h3>{p.likes} gostos</h3>,
                             <h3>{p.comments}</h3>
                         ]);
                     }.bind(this)) // a função com atributo p vai percorrer cada um daqueles posts
