@@ -1,0 +1,141 @@
+.App {
+  display: flex;
+  color: white;
+  margin: 0%;
+  object-fit: cover;
+  background-size: cover;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  /********************/
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  /********************/
+}
+
+.App__Aside {
+  display: block;
+  margin-left: 50px;
+}
+
+.App__Form {
+  margin: auto;
+  width: 50%;
+  opacity: 0.7;
+  background-color: #4b2402;
+  border-radius: 2%;
+  overflow: auto;
+  text-align: center;
+}
+
+.PageSwitcher {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10%;
+}
+
+.PageSwitcher__Item {
+  background-color: #0c3d39;
+  color: #9da6b1;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 0.9em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.PageSwitcher__Item--Active {
+  background-color: #6cd6bf;
+  color: white;
+}
+
+.PageSwitcher__Item:first-child {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.PageSwitcher__Item:last-child {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.FormCenter {
+  margin-bottom: 100px;
+}
+
+.FormTitle {
+  color: #f2994a;
+  font-weight: 300;
+  margin: 5%;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.7em;
+  opacity: initial;
+  padding-bottom: 5px;
+}
+
+.FormField {
+  margin-bottom: 40px;
+  margin-left: 20px;
+  margin: auto;
+  width: 80%;
+  text-align: center;
+}
+
+.FormField__Label {
+  display: block;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  color: #f2994a;
+  margin-top: 10px;
+  opacity: initial;
+}
+.FormField__Input {
+  width: 85%;
+  background-color: white;
+  border: none;
+  color: black;
+  outline: none;
+  border: 1px solid #4b2402;
+  border-bottom: 1px solid #f2994a;
+  font-size: 1em;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  text-align: center;
+  display: inline-block;
+  opacity: initial;
+}
+
+.FormField__Input::placeholder {
+  color: black;
+}
+
+.FormField__Button {
+  background-color: #f2994a;
+  color: black;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  font-size: 1em;
+  font-weight: 500;
+  margin-top: 10%;
+  padding: 2% 2% 2% 2%;
+}
+
+.FormField__Button:disabled {
+  background-color: #e3bfa0;
+  color: black;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  font-size: 1em;
+  font-weight: 500;
+  margin-top: 10%;
+  padding: 2% 2% 2% 2%;
+}
